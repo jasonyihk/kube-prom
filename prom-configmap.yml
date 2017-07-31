@@ -1,0 +1,31 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: prometheus-rulefiles-custom
+  labels:
+    role: prometheus-rulefiles
+    prometheus: custom
+data:
+  configmaps.json: |+
+    {
+      "items": [
+        {
+          "key": "testing/test0"
+        }
+      ]
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test0
+data:
+  up.rules: |-
+    ALERT BackendPrometheusDown
+      IF up{job="backend-prometheus"} == 0
+      FOR 1m
+      LABELS { severity = "page" }
+      ANNOTATIONS {
+        summary = "Instance {{ $labels.instance }} down",
+        description = "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute",
+      }
