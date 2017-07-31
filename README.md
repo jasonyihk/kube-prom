@@ -1,13 +1,13 @@
 
 ## populate prometheus TPR without RuleSelector & ServiceMonitor
 
-### Prometheus Operator (re-)generates the configuration for the Prometheus instances based on the ConfigMaps it is able to find with the specified label selector: 
+Prometheus Operator (re-)generates the configuration for the Prometheus instances based on the ConfigMaps it is able to find with the specified label selector: 
 
 ```sh
 prometheus: custom
 ```
 
-### Prometheus Operator writes the names of those ConfigMaps into the Secret used for configuring Prometheus:
+Prometheus Operator writes the names of those ConfigMaps into the Secret used for configuring Prometheus:
 
 ```sh
 configmaps.json: |+
@@ -20,7 +20,7 @@ configmaps.json: |+
     }
 ```
 
-### Prometheus Operator generates the followingPrometheus configuration based on the configmaps being found in the configmaps.json:
+Prometheus Operator generates the followingPrometheus configuration based on the configmaps being found in the configmaps.json:
 
 ```sh
     {
@@ -30,7 +30,7 @@ configmaps.json: |+
     }
 ```
 
-### The sidecar config-reloader then retrieves the ConfigMaps specified in the configmaps.json file and writes them into the directories as stated in the generated configuration.
+The sidecar config-reloader then retrieves the ConfigMaps specified in the configmaps.json file and writes them into the directories as stated in the generated configuration.
 
 
 
