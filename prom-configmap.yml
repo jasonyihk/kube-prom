@@ -10,7 +10,7 @@ data:
     {
       "items": [
         {
-          "key": "testing/test0"
+          "key": "testing/rule01"
         }
       ]
     }
@@ -18,7 +18,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: test0
+  name: rule01
 data:
   up.rules: |-
     ALERT BackendPrometheusDown
